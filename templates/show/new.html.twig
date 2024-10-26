@@ -1,0 +1,18 @@
+{# templates/show/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Show{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Show pour "{{ theatrePlay.title }}"</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.numshow) }}
+        {{ form_row(form.nbrseat) }}
+        {{ form_row(form.dateshow) }}
+        <button type="submit">Ajouter le Show</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('theatre_play_list') }}">Retour à la liste des pièces de théâtre</a>
+{% endblock %}

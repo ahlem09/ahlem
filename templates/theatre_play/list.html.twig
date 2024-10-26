@@ -1,0 +1,41 @@
+{# templates/theatre_play/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Pièces de Théâtre{% endblock %}
+
+{% block body %}
+    <h1>Liste des Pièces de Théâtre</h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title (Majuscule)</th>
+                <th>Extrait Titre (Slice)</th>
+                <th>Genre</th>
+                <th>Duration</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for play in theatrePlays %}
+                <tr>
+                    <td>{{ play.id }}</td>
+                    <td>{{ play.title | upper }}</td>
+                    <td>{{ play.title | slice(1, 2) }}</td>
+                    <td>{{ play.genre }}</td>
+                    <td>{{ play.duration }}</td>
+                    <td>
+                        <a href="{{ path('add_show', { 'theatrePlayId': play.id }) }}" style="margin-right: 10px;">Add Show</a>
+                        <a href="{{ path('delete_theatre_play', { 'id': play.id }) }}" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette pièce de théâtre ?');">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucune pièce de théâtre trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
